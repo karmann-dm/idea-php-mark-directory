@@ -1,0 +1,29 @@
+<idea-plugin>
+  <id>ru.softmg</id>
+  <name>Directory marker for PHPStorm and other products</name>
+  <version>1.0</version>
+  <vendor email="karmanno@gmail.com" url="https://www.softmg.ru">Softmg</vendor>
+
+  <description>
+    This plugin provides default instruments for colored marks for directories
+  </description>
+
+  <change-notes>
+    01.03.2019 Initial change, make executable
+  </change-notes>
+
+  <idea-version since-build="173.0"/>
+
+  <depends>com.intellij.modules.lang</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <treeStructureProvider implementation="ru.softmg.plugin.providers.MarkedFileTreeStructureProvider" />
+  </extensions>
+
+  <actions>
+    <action class="ru.softmg.plugin.actions.FileMarker" text="Highlight" description="Highlight">
+      <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last" />
+    </action>
+  </actions>
+
+</idea-plugin>
