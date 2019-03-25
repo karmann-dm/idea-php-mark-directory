@@ -1,5 +1,5 @@
 <idea-plugin>
-  <id>ru.softmg</id>
+  <id>DirectoryMarker</id>
   <name>Directory marker for PHPStorm and other products</name>
   <version>1.0</version>
   <vendor email="karmanno@gmail.com" url="https://www.softmg.ru">Softmg</vendor>
@@ -17,13 +17,20 @@
   <depends>com.intellij.modules.lang</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <treeStructureProvider implementation="ru.softmg.plugin.providers.MarkedFileTreeStructureProvider" />
+    <editorTabColorProvider implementation="ru.softmg.plugin.providers.MarkedFileEditorTabColorProvider" />
   </extensions>
 
   <actions>
-    <action class="ru.softmg.plugin.actions.FileMarker" text="Highlight" description="Highlight">
-      <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last" />
-    </action>
+      <group id="_fileMarker" text="Mark directory" description="Mark directory" popup="true">
+          <action id="n1Marker" class="ru.softmg.plugin.actions.FileMarker" text="Mark" description="Mark" icon="DirectoryMarkerIcons.N1_ICON" />
+          <action id="n2Marker" class="ru.softmg.plugin.actions.FileMarker" text="Mark" description="Mark" icon="DirectoryMarkerIcons.N2_ICON" />
+          <action id="n3Marker" class="ru.softmg.plugin.actions.FileMarker" text="Mark" description="Mark" icon="DirectoryMarkerIcons.N3_ICON" />
+          <action id="n4Marker" class="ru.softmg.plugin.actions.FileMarker" text="Mark" description="Mark" icon="DirectoryMarkerIcons.N4_ICON" />
+          <action id="n5Marker" class="ru.softmg.plugin.actions.FileMarker" text="Mark" description="Mark" icon="DirectoryMarkerIcons.N5_ICON" />
+          <action class="ru.softmg.plugin.actions.FileMarkerByColorPicker" text="Pick a color..." description="Pick a color..."/>
+          <action class="ru.softmg.plugin.actions.FileUnmarker" text="Unmark" description="Unmark"/>
+          <add-to-group group-id="ProjectViewPopupMenuModifyGroup" anchor="last" />
+      </group>
   </actions>
 
 </idea-plugin>

@@ -1,11 +1,12 @@
 package ru.softmg.plugin.repositories;
 
-import com.intellij.ide.projectView.impl.nodes.PsiFileNode;
+import ru.softmg.plugin.models.MarkedFile;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public interface MarkedFilesRepository {
-    List<? extends PsiFileNode> getNodes();
-    Stream<? extends PsiFileNode> getNodesStream();
+    List<MarkedFile> getNodes();
+    void addNode(MarkedFile node);
+    boolean containsNode(MarkedFile node);
+    void removeNode(MarkedFile node);
 }
