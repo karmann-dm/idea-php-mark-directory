@@ -1,38 +1,58 @@
 package ru.softmg.plugin.repositories;
 
+import com.intellij.openapi.components.PersistentStateComponent;
+import com.intellij.openapi.components.State;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.softmg.plugin.models.MarkedFile;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarkedFilesRepositoryImpl implements MarkedFilesRepository {
-    private List<MarkedFile> markedFiles = new ArrayList<>();
+@State(name = "markedFiles.xml")
+public class MarkedFilesRepositoryImpl implements MarkedFilesRepository, PersistentStateComponent<MarkedFilesRepositoryImpl.State> {
     private static MarkedFilesRepository repository = null;
+    private State state = new State();
+
+    static class State {
+        List<MarkedFile> markedFiles = new ArrayList<>();
+    }
+
+    @Nullable
+    @Override
+    public State getState() {
+        return state;
+    }
+
+    @Override
+    public void loadState(@NotNull State state) {
+        this.state = state;
+    }
 
     @Override
     public List<MarkedFile> getNodes() {
-        return markedFiles;
+        return state.markedFiles;
     }
 
     @Override
     public void addNode(MarkedFile node) {
         if(!containsNode(node))
-            markedFiles.add(node);
+            state.markedFiles.add(node);
         else {
-            int index = markedFiles.indexOf(node);
-            MarkedFile existing = markedFiles.get(index);
+            int index = state.markedFiles.indexOf(node);
+            MarkedFile existing = state.markedFiles.get(index);
             existing.setColor(node.getColor());
         }
     }
 
     @Override
     public boolean containsNode(MarkedFile node) {
-        return markedFiles.contains(node);
+        return state.markedFiles.contains(node);
     }
 
     @Override
     public void removeNode(MarkedFile node) {
-        markedFiles.remove(node);
+        state.markedFiles.remove(node);
     }
 
     public static MarkedFilesRepository getInstance() {

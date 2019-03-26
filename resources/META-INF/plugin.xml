@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>DirectoryMarker</id>
-  <name>Directory marker for PHPStorm and other products</name>
-  <version>1.0</version>
+  <name>Directory marker</name>
+  <version>1.2</version>
   <vendor email="karmanno@gmail.com" url="https://www.softmg.ru">Softmg</vendor>
 
   <description>
@@ -9,7 +9,7 @@
   </description>
 
   <change-notes>
-    01.03.2019 Initial change, make executable
+    25.03.2019 Fixed PHPStorm errors with DataKeys class
   </change-notes>
 
   <idea-version since-build="173.0"/>
